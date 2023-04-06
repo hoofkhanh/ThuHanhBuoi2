@@ -1,0 +1,9 @@
+bool isTrue(int n){
+	if(n==0)
+		return true;
+	return isCheck(n-1);
+}
+
+bool isCheck(int n){
+	return !isTrue(n);
+}
