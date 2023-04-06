@@ -7,13 +7,13 @@ void heapify(int a[],int n,int i){
 		max=l;
 	}
 	
-	if(r<n && a[r]>a[max]){
+	if(r<n && a[r]<a[max]){
 		max=r;
 	}
 	
 	if(max!=i ){
 		swap(a[max],a[i]);
-		heapify(a,n,i);
+		heapify(a,n,max);
 	}
 }
 
