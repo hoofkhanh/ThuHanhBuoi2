@@ -1,16 +1,15 @@
 #include<stdio.h>
 
-int giaiThua(int n){
+int tinhTongSoChan(int a[],int n){
 	if(n==0)
-		return 1;
-	if(n<0)
-		return -1;
-	return giaiThua(n-1)*n;
+		return 0;
+	if(a[n-1]%2==0)
+		return a[n-1]+tinhTongSoChan(a,n-1);
+		return tinhTongSoChan(a,n-1);
 }
 
 int main(){
-	int n;
-	printf("nhap n");
-	scanf("%d",&n);
-	printf("giai thua = %d",giaiThua(n));
+	int a[]={1,6,2,9,8,-6};
+	int n=sizeof(a)/sizeof(a[0]);
+	printf("ket qua = %d",tinhTongSoChan(a,n));
 }
