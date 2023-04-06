@@ -1,0 +1,58 @@
+#include<stdio.h>
+
+void nhapMang(int a[],int &n){
+	do{
+		printf("nhap 0<n<=100 ");
+		scanf("%d",&n);
+	}while(n>100 || n<=0);
+	
+	for(int i=0;i<n;i++){
+		printf("a[%d] = ",i);
+		scanf("%d",&a[i]);
+	}
+}
+
+void xuatMang(int a[],int n){
+	printf("Cac gia tri da nhap la :");
+	for(int i=0;i<n;i++){
+		printf("%4d",a[i]);
+	}
+}
+
+void swap(int &a,int &b){
+	int tam=a;
+	a=b;
+	b=tam;
+}
+
+int timViTriPiVot(int a[],int left,int right){
+	int pivot=a[left];
+	int pivotInDex=left;
+	for(int i=left+1;i<=right;i++){
+		if(a[i]<=pivot){
+			++pivotInDex;
+			swap(a[i],a[pivotInDex]);
+		}
+	}
+	swap(a[left],a[pivotInDex]);
+	return pivotInDex;
+}
+
+void quick_Sort(int a[],int left,int right){
+	if(left>=right)
+		return;
+	int pivot=timViTriPiVot(a,left,right);
+	
+	return quick_Sort(a,left,pivot-1);
+	return quick_Sort(a,pivot+1,right);
+}
+
+int main(){
+	int a[100],n;
+	nhapMang(a,n);
+	xuatMang(a,n);
+	printf("\n");
+	quick_Sort(a,0,n-1);
+	printf("\n");
+	xuatMang(a,n);
+}
