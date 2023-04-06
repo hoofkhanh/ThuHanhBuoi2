@@ -1,22 +1,44 @@
-
 int timViTriPiVot(int a[],int left,int right){
 	int pivot=a[left];
-	int pivotInDex=left;
+//	int pivotInDex=left;
+//	for(int i=left+1;i<=right;i++){
+//		if(a[i]<=pivot){
+//			++pivotInDex;
+//			swap(a[i],a[pivotInDex]);
+//		}
+//	}
+//	swap(a[left],a[pivotInDex]);
+//	return pivotInDex;
+
+	int count=0;
 	for(int i=left+1;i<=right;i++){
-		if(a[i]<=pivot){
-			++pivotInDex;
-			swap(a[i],a[pivotInDex]);
+		if(a[i]>pivot)
+			count++;
+	}
+	int pivotInDex=left+count;
+	swap(a[left],a[pivotInDex]);
+	
+	int i=left;
+	int j=right;
+	while(i<pivotInDex && j>pivotInDex){
+		while(a[i]>pivot){
+			i++	;
+		}
+		if(a[j]<=pivot)
+			j--;
+		if(i<pivotInDex && j>pivotInDex){
+			swap(a[i],a[j]);
 		}
 	}
-	swap(a[left],a[pivotInDex]);
 	return pivotInDex;
 }
 
 void quick_Sort(int a[],int left,int right){
 	if(left>=right)
 		return;
+		
 	int pivot=timViTriPiVot(a,left,right);
 	
-	return quick_Sort(a,left,pivot-1);
-	return quick_Sort(a,pivot+1,right);
+	 quick_Sort(a,left,pivot-1);
+	 quick_Sort(a,pivot+1,right);
 }
