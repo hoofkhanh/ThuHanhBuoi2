@@ -1,0 +1,9 @@
+int tinhTongMangChan(int a[],int n){
+	if(n==0)
+		return 0;
+	if(a[n-1]%2==0){
+		return tinhTongMangChan(a,n-1) + a[n-1];
+	}else{
+		return tinhTongMangChan(a,n-1);
+	}
+}
