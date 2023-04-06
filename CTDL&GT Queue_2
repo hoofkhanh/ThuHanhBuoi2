@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	int data;
+	struct Node* next;
+};
+typedef Node node;
+
+struct Queue{
+	node* front=NULL;
+	node* rear=NULL;
+};
+typedef Queue queue;
+
+bool isEmpty(queue* q){
+	return q->front==NULL;
+}
+
+void enQueue(queue* q,int x){
+	node* newNode=(node*)malloc(sizeof(node));
+	if(newNode==NULL){
+		printf("khong the cap phat");
+		return;
+	}
+	
+	newNode->data=x;
+	newNode->next=NULL;
+	
+	if(isEmpty(q)){
+		q->front=newNode;
+	}else{
+		q->rear->next=newNode;
+	}
+	q->rear=newNode;
+}
+
+int dequeue(queue* q){
+	if(isEmpty(q)){
+		printf("da rong khong the xoa");
+		return -1;
+	}
+	
+	int x=q->front->data;
+	node* temp=q->front;
+	q->front=q->front->next;
+	free(temp);
+	return x;
+}
+
+int Rear(queue* q){
+	return q->rear->data;
+}
+
+int Front(queue* q){
+	return q->front->data;
+}
+
+void output(queue* q){
+	if(isEmpty(q)){
+		printf("danh sach da rong");
+		return ;
+	}
+	node* temp=q->front;
+	while(temp!=NULL){
+		printf("%d   ",temp->data);
+		temp=temp->next;
+	}
+}
+
+int main(){
+	queue q;
+	enQueue(&q,10);
+	enQueue(&q,50);
+	enQueue(&q,100);
+	enQueue(&q,20);
+	output(&q);
+	printf("\nda xoa %d",dequeue(&q));
+	printf("\ngia tri front =%d",Front(&q));
+	printf("\ngia tri rear = %d",Rear(&q));
+	printf("\n");
+	output(&q);
+	
+}
