@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+void nhapMang(int a[],int &n){
+	do{
+		printf("nhap 0<n<=100 ");
+		scanf("%d",&n);
+	}while(n>100 || n<=0);
+	
+	for(int i=0;i<n;i++){
+		printf("a[%d] = ",i);
+		scanf("%d",&a[i]);
+	}
+}
+
+void xuatMang(int a[],int n){
+	printf("Cac gia tri da nhap la :");
+	for(int i=0;i<n;i++){
+		printf("%4d",a[i]);
+	}
+}
+
+int binary_search(int a[],int n,int x){
+	int left=0,right=n-1,mid;
+	
+	do{
+		mid=(left+right)/2;
+		if(a[mid]==x){
+			return mid;
+		}else if(x>a[mid]){
+			left=mid+1;
+		}else{
+			right=mid-1;
+		}
+	}while(left<=right);	
+	return -1;
+		
+}
+
+int main(){
+	int a[100],n;
+	nhapMang(a,n);
+	xuatMang(a,n);
+	int x;
+	printf("\nnhap x =");
+	scanf("%d",&x);
+	int vitri=binary_search(a,n,x);
+	if(vitri==-1){
+		printf("\nkhong tim thay %d",x);
+	}else{
+		printf("\ntim thay %d o vi tri %d",x,vitri);
+	}
+	
+}
