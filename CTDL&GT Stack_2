@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<stdlib.h>
+//int a[100],top=0;
+//
+//bool isFull(){
+//	return top>=100;
+//}
+//
+//bool isEmpty(){
+//	return top<=0;
+//}
+//
+//void push(int x){
+//	if(isFull()){
+//		printf("ngan xep da day");
+//	}
+//	a[top++]=x;
+//}
+//
+//int pop(){
+//	if(isEmpty()){
+//		printf("ngan xep da rong khong the xoa");
+//	}
+//	
+//	int x=a[top-1];
+//	top--;
+//	return x;
+//}
+//
+//int size(){
+//	return top;
+//}
+//
+//int Top(){
+//	return a[top-1];
+//}
+//
+//void output(){
+//	for(int i=0;i<top;i++){
+//		printf("%d   ",a[i]);
+//	}
+//}
+
+struct Node{
+	int data;
+	struct Node* next;
+};
+typedef Node node;
+
+node* top=NULL;
+
+bool isEmpty(){
+	return top==NULL;
+}
+
+void push(int x){
+	node* newNode=(node*)malloc(sizeof(node));
+	if(newNode==NULL){
+		printf("khong the cap phat");
+		return;
+	}
+	
+	newNode->data=x;
+	newNode->next=top;
+	top=newNode;
+}
+
+int pop(){
+	if(isEmpty()){
+		printf("khong the xoa vi rong");
+	}
+	
+	node* temp=top;
+	int x=top->data;
+	top=top->next;
+	free(temp);
+	return x;
+}
+
+int Top(){
+	return top->data;
+}
+
+void output(){
+	if(isEmpty()){
+		printf("danh sach rong");
+		return;
+	}
+	
+	node* temp=top;
+	while(temp!=NULL){
+		printf("%d   ",temp->data);
+		temp=temp->next;
+	}
+}
+
+int main(){
+	push(10);
+	push(100);
+	push(20);
+	printf("\n");
+	output();
+	printf("\nda xoa %d",pop());
+	printf("\nda xoa %d",pop());
+	printf("\n");
+	output();
+	printf("\ngia tri cuoi cua ngan xep =%d",Top());
+	
+}
