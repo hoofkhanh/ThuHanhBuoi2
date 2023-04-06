@@ -1,0 +1,20 @@
+#include<stdio.h>
+bool isTrue(int n);
+bool isCheck(int n);
+
+	bool isTrue(int n){
+		if(n==0)
+			return true;
+		return isCheck(n-1);
+	}
+	
+	bool isCheck(int n){
+		return !isTrue(n);
+	}
+
+int main(){
+	int n;
+	printf("nhap n");
+	scanf("%d",&n);
+	printf("\n%d ",isTrue(n));
+}
