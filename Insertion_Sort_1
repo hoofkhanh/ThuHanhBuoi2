@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+void nhapMang(int a[],int &n){
+	do{
+		printf("nhap 0<n<=100 ");
+		scanf("%d",&n);
+	}while(n>100 || n<=0);
+	
+	for(int i=0;i<n;i++){
+		printf("a[%d] = ",i);
+		scanf("%d",&a[i]);
+	}
+}
+
+void xuatMang(int a[],int n){
+	printf("Cac gia tri da nhap la :");
+	for(int i=0;i<n;i++){
+		printf("%4d",a[i]);
+	}
+}
+
+void Insertion_Sort_tangDan(int a[],int n){
+	for(int i=0;i<n;i++){
+		int x=a[i],j=i-1;
+		while(j>=0 && a[j]>x){
+			a[j+1]=a[j];
+			j--;
+		}
+		a[++j]=x;
+	}
+}
+
+void Insertion_Sort_giamDan(int a[],int n){
+for(int i=0;i<n;i++){
+		int x=a[i],j=i-1;
+		while(j>=0 && a[j]<x){
+			a[j+1]=a[j];
+			j--;
+		}
+		a[++j]=x;
+	}
+}
+
+int main(){
+	int a[100],n;
+	nhapMang(a,n);
+	xuatMang(a,n);
+	printf("\n");
+	Insertion_Sort_tangDan(a,n);
+	printf("\nsau khi sap xep tang dan");
+	printf("\n");
+	xuatMang(a,n);	
+	Insertion_Sort_giamDan(a,n);
+	printf("\nsau khi sap xep giam dan");
+	printf("\n");
+	xuatMang(a,n);
+}
